@@ -1,21 +1,38 @@
-// el encargado de hacer la peticion al; api de uinplash
+import axios from 'axios';
 
-import axios from "axios";
+const SearchImages  = async () => {
 
-// funct que va a hacer la peticion cuando la invoque
-const searchImages = async (term)=>{
-    const response = awaitaxios.get("https://api.unsplash.com/search/photos", {
-        header:{
-            Authorization:"Client-ID cxtZDI19lI0XAcOfjFWV-aS7LlFHlueGFUf6Bg9TO_E"
-        }, 
-        params:{
-            query: term
-        }
-    })
+    try {
 
-    
-    return response.data.results
+        const response = await axios.get('https://api.unsplash.com/search/photos', {
 
-}
+            headers: {
 
-export default searchImages; 
+                Authorization: 'Client-ID B7eqJAuHTGhmM4i5m-eqcV2TfAWEXVQyQi-XnYrgdww'
+
+            },
+
+            params: {
+
+                query: 'gatos'
+
+            }
+
+        });
+
+        console.log(response.data.results);
+
+        return response.data.results;
+
+    } catch (error) {
+
+        console.error('Error al realizar la solicitud:', error);
+
+        throw error;
+
+    }
+
+};
+
+export default SearchImages;
+
